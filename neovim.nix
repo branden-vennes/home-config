@@ -54,8 +54,6 @@
       vim.cmd("set tabstop=2")
       vim.cmd("set shiftwidth=2")
       vim.cmd("set expandtab")
-      vim.cmd("set endofline")
-      vim.cmd("set fixendofline")
       vim.cmd("set termguicolors")
       -- end    General Options
 
@@ -277,7 +275,7 @@
 
       local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
       vim.api.nvim_create_autocmd("FileType", {
-        pattern = { "scala" },
+        pattern = { "scala", "sbt" },
         callback = function()
           Metals.initialize_or_attach(Metals.bare_config())
         end,

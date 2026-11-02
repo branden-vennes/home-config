@@ -19,6 +19,8 @@ in {
     starship
     tree-sitter
     ripgrep
+    claude-code
+    glow
 
     # Builds
     scala-cli
@@ -110,9 +112,9 @@ in {
     enable = true;
     font = {
       name = "GoMono Nerd Font";
-      size = 16;
+      size = 12;
     };
-    themeFile = "Novel";
+    themeFile = "PencilLight";
   };
 
   programs.neovim = with pkgs; import ./neovim.nix {
@@ -133,6 +135,21 @@ in {
             "browser.aboutConfig.showWarning" = false;
           };
         };
+    };
+  };
+
+  programs.gh = {
+    enable = true;
+    settings = {
+      pager = "cat";
+      git_protocol = "https";
+      editor = "nvim";
+      prompt = "enabled";
+      prefer_editor_prompt = "disabled";
+      aliases = {
+        co = "pr checkout";
+      };
+      spinner = "enabled";
     };
   };
 }
