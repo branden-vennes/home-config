@@ -111,9 +111,9 @@ in {
     enable = true;
     font = {
       name = "GoMono Nerd Font";
-      size = 12;
+      size = 14;
     };
-    themeFile = "PencilLight";
+    themeFile = "BirdsOfParadise";
   };
 
   programs.neovim = with pkgs; import ./neovim.nix {
@@ -139,9 +139,13 @@ in {
         "browser.startup.homepage" = "https://glance.branden.cafe";
       };
     };
-
-    configPath = "Library/Application Support/org.nixos.firefox";
-  };
+  } // (
+    if isLinux
+    then {}
+    else {
+      configPath = "Library/Application Support/org.nixos.firefox";
+    }
+  );
 
   programs.gh = {
     enable = true;
