@@ -69,6 +69,11 @@ in {
     GIT_MACHETE_EDITOR = "nvim";
   };
 
+  home.shellAliases = {
+    "gmsl" = "git machete status --list-commits-with-hashes";
+    "gms" = "git machete status";
+  };
+
   programs.home-manager.enable = true;
 
   programs.tmux = {
@@ -86,8 +91,6 @@ in {
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-
-    shellAliases = {};
 
     history.size = 10000;
 
