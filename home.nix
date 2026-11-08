@@ -23,6 +23,7 @@ in {
     claude-code
     glow
     tealdeer
+    coursier
 
     # Builds
     scala-cli
@@ -51,6 +52,21 @@ in {
 
     # Fonts
     nerd-fonts.iosevka
+
+    # Custom Scripts
+
+    (
+      pkgs.symlinkJoin {
+        name = "coursier";
+        paths = with pkgs; [
+          coursier
+
+          (writeShellScriptBin "coursier" ''
+            cs "$@"
+          '')
+        ];
+      }
+    )
   ] ++ (if isLinux then with pkgs; [ openvpn3 ] else []);
 
   home.file = {};
@@ -117,6 +133,8 @@ in {
       name = "GoMono Nerd Font";
       size = 14;
     };
+    # light: "Novel";
+    # dark: "BirdsOfParadise"
     themeFile = "BirdsOfParadise";
   };
 

@@ -123,32 +123,32 @@
 
       -- start  Mini Cursorword
       local MiniCursorword = require('mini.cursorword')
-      MiniCursorword.setup({});
+      MiniCursorword.setup();
       -- end    Mini Cursorword
 
       -- start  Mini Completion
       local MiniCompletion = require('mini.completion')
-      MiniCompletion.setup({});
+      MiniCompletion.setup();
       -- end    Mini Completion
 
       -- start  Mini Animate
       local MiniAnimate = require('mini.animate')
-      MiniAnimate.setup({});
+      MiniAnimate.setup();
       -- end    Mini Animate
 
       -- start  Mini Statusline
       local MiniStatusline = require('mini.statusline')
-      MiniStatusline.setup({});
+      MiniStatusline.setup();
       -- end    Mini Statusline
 
       -- start  Mini Tabline
       local MiniTabline = require('mini.tabline')
-      MiniTabline.setup({});
+      MiniTabline.setup();
       -- end    Mini Tabline
 
       -- start  Mini Trailspace
       local MiniTrailspace = require("mini.trailspace")
-      MiniTrailspace.setup({});
+      MiniTrailspace.setup();
 
       map("n", "<leader>tw", function () MiniTrailspace.trim() end)
       -- end    Mini Trailspace
