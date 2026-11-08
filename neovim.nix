@@ -149,6 +149,8 @@
       -- start  Mini Trailspace
       local MiniTrailspace = require("mini.trailspace")
       MiniTrailspace.setup({});
+
+      map("n", "<leader>tw", function () MiniTrailspace.trim() end)
       -- end    Mini Trailspace
 
 
