@@ -20,38 +20,9 @@ in {
     starship
     tree-sitter
     ripgrep
-    claude-code
     glow
     tealdeer
-
-    # Builds
-    scala-cli
-    nodejs_22
-    jdk25
-    maven
-
-    # Language Servers
-    nil
-    emmylua-ls
-    lombok
-    jdt-language-server
-    nil
-    vtsls
-    vue-language-server
-    metals
-
-    # Apps
-    kitty
-    slack
-
-    # Music
-    kew
-    psst
-    spotify
-
-    # Fonts
-    nerd-fonts.iosevka
-  ] ++ (if isLinux then with pkgs; [ openvpn3 ] else []);
+  ];
 
   home.file = {};
 
@@ -108,45 +79,11 @@ in {
 
   programs.starship = import ./starship.nix;
 
-  programs.kitty = {
-    enable = true;
-    font = {
-      name = "GoMono Nerd Font";
-      size = 14;
-    };
-    themeFile = "BirdsOfParadise";
-  };
-
   programs.neovim = with pkgs; import ./neovim.nix {
     inherit vimPlugins;
     inherit awesomeNeovimPlugins;
     inherit lombok;
   };
-
-  programs.firefox = {
-    enable = true;
-
-    profiles.default = {
-      extensions = {
-        packages = with pkgs.firefoxAddons; [
-          pkgs.firefoxAddons."1password-x-password-manager"
-          darkreader
-          ublock-origin
-          kagi-search-for-firefox
-        ];
-      };
-
-      settings = {
-        "browser.startup.homepage" = "https://glance.branden.cafe";
-      };
-    };
-  } // (
-    if isLinux
-    then {}
-    else {
-      configPath = "Library/Application Support/org.nixos.firefox";
-    }
-  );
 
   programs.gh = {
     enable = true;
