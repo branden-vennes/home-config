@@ -22,6 +22,7 @@ in {
     ripgrep
     claude-code
     glow
+    tealdeer
 
     # Builds
     scala-cli
