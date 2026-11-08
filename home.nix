@@ -2,9 +2,10 @@
 
 let
   username = "branden";
+  isLinux = pkgs.stdenv.hostPlatform.isLinux;
 in {
   home.username = username;
-  home.homeDirectory = if pkgs.stdenv.isLinux then "/home/branden" else "/Users/branden";
+  home.homeDirectory = if isLinux then "/home/branden" else "/Users/branden";
 
   home.stateVersion = "26.05";
   nixpkgs.config.allowUnfree = true;
@@ -41,8 +42,6 @@ in {
     # Apps
     kitty
     slack
-    firefox
-    google-chrome
 
     # Music
     kew
@@ -51,7 +50,7 @@ in {
 
     # Fonts
     nerd-fonts.iosevka
-  ] ++ (if pkgs.stdenv.isLinux then with pkgs; [ openvpn3 ] else []);
+  ] ++ (if isLinux then with pkgs; [ openvpn3 ] else []);
 
   home.file = {};
 
@@ -126,16 +125,22 @@ in {
   programs.firefox = {
     enable = true;
 
-    profiles = {
-        "personal" = {
-          id = 0;
-          path = username;
+    profiles.default = {
+      extensions = {
+        packages = with pkgs.firefoxAddons; [
+          pkgs.firefoxAddons."1password-x-password-manager"
+          darkreader
+          ublock-origin
+          kagi-search-for-firefox
+        ];
+      };
 
-          settings = {
-            "browser.aboutConfig.showWarning" = false;
-          };
-        };
+      settings = {
+        "browser.startup.homepage" = "https://glance.branden.cafe";
+      };
     };
+
+    configPath = "Library/Application Support/org.nixos.firefox";
   };
 
   programs.gh = {

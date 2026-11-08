@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs = {
-      url = "github:nixos/nixpkgs?ref=nixos-26.05";
+      url = "github:nixos/nixpkgs?ref=nixos-unstable";
     };
     systems = {
       url = "github:nix-systems/default";
@@ -13,7 +13,7 @@
       inputs.systems.follows = "systems";
     };
     home-manager = {
-      url = "github:nix-community/home-manager?ref=release-26.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-awesome-neovim-plugins = {
@@ -21,15 +21,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "systems";
     };
+    firefox-addons = {
+      url = "github:osipog/nix-firefox-addons";
+    };
   };
 
-  outputs = inputs@{ nixpkgs, flake-utils, home-manager, flake-awesome-neovim-plugins, ... }:
+  outputs = inputs@{ nixpkgs, flake-utils, home-manager, flake-awesome-neovim-plugins, firefox-addons, ... }:
     flake-utils.lib.eachSystem [ "aarch64-darwin" "x86_64-linux" ] (system:
     let
       pkgs = import nixpkgs {
         inherit system;
         overlays = [
           flake-awesome-neovim-plugins.overlays.default
+          firefox-addons.overlays.default
         ];
       };
     in

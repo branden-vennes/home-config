@@ -194,10 +194,10 @@
       Citruszest.setup({})
       -- end    Citruszest
 
-      -- start Colorscheme
-      vim.o.background = "light"
-      vim.cmd("colorscheme token-temper")
-      -- end
+      -- start  Colorscheme
+      vim.o.background = "dark"
+      vim.cmd("colorscheme token-meridian")
+      -- end    Colorscheme
 
       -- start  LSP
       vim.lsp.enable("emmylua_ls")
